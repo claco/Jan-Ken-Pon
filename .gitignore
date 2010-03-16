@@ -2,4 +2,4 @@ log
 tmp
 coverage
 db/schema.rb
-
+*.sqlite3
