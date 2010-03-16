@@ -13,11 +13,12 @@ Brainstorming
 
 1. Enter game view url?
 	Both submit. Then reveal.
-	Submit round at a time? All rounds(choises) ad once, then reveal?
+	Submit round at a time? All rounds(choices) ad once, then reveal? (Sudden death)
+	Instant Gratification (one turn rounds)
 	Rounds per game?
 	Turns per round?
-	Interchangable rules? (Reversi)
-	Additional implements? (Rock, Paper, Sccisors, Lizard, Spock)?
+	Interchangeable rules? (Reversi)
+	Additional implements? (Rock, Paper, Scissors, Lizard, Spock)?
 	Core game Kata style. Runs outside Rails. Then add rails support.
 
 2. Stock Authlogic
