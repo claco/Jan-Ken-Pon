@@ -9,6 +9,19 @@ Feature: Invites
     And I my email is confirmed
 
 
+  Scenario: Can't invite users when unconfirmed
+    Given my email is not confirmed
+	When I am on the home page
+    Then should not see "Invite a friend!"
+
+
+  Scenario: Can't invite user into game when unconfirmed
+    Given my email is not confirmed
+	And I start a new game
+    When I am on the game page
+    Then I should not see "Invite a friend"
+
+
   Scenario: Invite users to register
     Given I am on the home page
 	And I see "Invite a friend!"

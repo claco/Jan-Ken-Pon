@@ -18,3 +18,20 @@ Feature: Play Jan Ken Pon
 	And there is another user waiting for an opponent
 	When I click "Join Game"
 	Then I should join the game
+
+
+  Scenario: Can't create a game without logging in
+    Given I am not logged in
+    When I go to the create game page
+    Then I should be on the login page
+	When I am login as "test@example.com|password"
+	Then I should be on the game page
+
+
+  Scenario: Can't join a game without logging in
+    Given I am not logged in
+	And there is a game waiting for a player
+    When I go to the game page
+    Then I should be on the login page
+	When I am login as "test@example.com|password"
+	Then I should be on the game page
