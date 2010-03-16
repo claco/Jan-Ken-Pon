@@ -11,6 +11,7 @@ Feature: Spock Lizard game
 	And Rock beats Scissors, Lizard
 	And Lizard beats Spock, Paper
 	And Spock beats Scissors, Rock
+	And the game will have 1 round
 
 
   Scenario: Scissors cut Paper

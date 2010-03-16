@@ -9,6 +9,7 @@ Feature: Standard game
 	And Scissors beats Paper
 	And Paper beats Rock
 	And Rock beats Scissors
+	And the game will have 1 round
 
 
   Scenario: Scissors cut Paper

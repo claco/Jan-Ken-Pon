@@ -9,6 +9,7 @@ Feature: Reverse game
 	And Paper beats Scissors
 	And Rock beats Paper
 	And Scissors beats Rock
+	And the game will have 1 round
 
 
   Scenario: Scissors cut Paper
