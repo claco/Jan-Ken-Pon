@@ -11,6 +11,10 @@ describe Weapon do
     Weapon.new(:id => 42, :name => 'Rock').to_i.should == 42
   end
 
+  it "should return name from to_s" do
+    Weapon.new(:id => 42, :name => 'Rock').to_s.should == 'Rock'
+  end
+
   it "should throw an error when id is <= 0" do
     lambda{ Weapon.new(:id => 0) }.should raise_error(ArgumentError)
   end
