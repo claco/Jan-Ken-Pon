@@ -10,8 +10,12 @@ class RulesEngine
   end
 
   def process(a, b)
-    if a.blank? || b.blank? || !a.instance_of?(Weapon) || !b.instance_of?(Weapon)
-      raise ArgumentError, "process must receive two weapons"
+    if a.blank? || b.blank? || !a.instance_of?(Player) || !b.instance_of?(Player)
+      raise ArgumentError, "process must receive two players"
+    elsif a.id == b.id
+      raise ArgumentError, "players must be unique"
+    elsif a.weapon.blank? || b.weapon.blank?
+      raise ArgumentError, "both players must have weapons"
     end
 
     rules.each do |rule|

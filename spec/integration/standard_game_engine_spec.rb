@@ -21,64 +21,66 @@ describe StandardGameEngine do
   it "should have Rock beat Scissors" do
     rock = @engine.weapons.first
     scissors = @engine.weapons.third
+    player1 = Player.new(:id => 1, :weapon => rock)
+    player2 = Player.new(:id => 2, :weapon => scissors)
 
-    winner = @engine.deliver(rock, scissors)
-    winner.should == rock
-    winner.name.should == 'Rock'
-  end
+    winner = @engine.deliver(player1, player2)
+    winner.should == player1
+    winner.weapon.should == rock
+    winner.weapon.name.should == 'Rock'
 
-  it "should have Rock beat Scissors" do
-    rock = @engine.weapons.first
-    scissors = @engine.weapons.third
-
-    winner = @engine.deliver(scissors, rock)
-    winner.should == rock
-    winner.name.should == 'Rock'
-  end
-
-  it "should have Paper beat Rock" do
-    rock = @engine.weapons.first
-    paper = @engine.weapons.second
-
-    winner = @engine.deliver(rock, paper)
-    winner.should == paper
-    winner.name.should == 'Paper'
+    winner = @engine.deliver(player2, player1)
+    winner.should == player1
+    winner.weapon.should == rock
+    winner.weapon.name.should == 'Rock'
   end
 
   it "should have Paper beat Rock" do
     rock = @engine.weapons.first
     paper = @engine.weapons.second
+    player1 = Player.new(:id => 1, :weapon => rock)
+    player2 = Player.new(:id => 2, :weapon => paper)
 
-    winner = @engine.deliver(paper, rock)
-    winner.should == paper
-    winner.name.should == 'Paper'
+    winner = @engine.deliver(player1, player2)
+    winner.should == player2
+    winner.weapon.should == paper
+    winner.weapon.name.should == 'Paper'
+
+    winner = @engine.deliver(player2, player1)
+    winner.should == player2
+    winner.weapon.should == paper
+    winner.weapon.name.should == 'Paper'
   end
 
   it "should have Scissors beat Paper" do
     scissors = @engine.weapons.third
     paper = @engine.weapons.second
+    player1 = Player.new(:id => 1, :weapon => scissors)
+    player2 = Player.new(:id => 2, :weapon => paper)
 
-    winner = @engine.deliver(scissors, paper)
-    winner.should == scissors
-    winner.name.should == 'Scissors'
-  end
+    winner = @engine.deliver(player1, player2)
+    winner.should == player1
+    winner.weapon.should == scissors
+    winner.weapon.name.should == 'Scissors'
 
-  it "should have Scissors beat Paper" do
-    scissors = @engine.weapons.third
-    paper = @engine.weapons.second
-
-    winner = @engine.deliver(paper, scissors)
-    winner.should == scissors
-    winner.name.should == 'Scissors'
+    winner = @engine.deliver(player2, player1)
+    winner.should == player1
+    winner.weapon.should == scissors
+    winner.weapon.name.should == 'Scissors'
   end
 
   it "should be a stalemate for two of the same" do
     rock = @engine.weapons.first
     paper = @engine.weapons.second
     scissors = @engine.weapons.third
+    player1 = Player.new(:id => 1)
+    player2 = Player.new(:id => 2)
 
-    @engine.deliver(rock, rock).should be_nil
-    @engine.deliver(paper, paper).should be_nil
-    @engine.deliver(scissors, scissors).should be_nil
+    [rock, paper, scissors].each do |weapon|
+      player1.weapon = weapon
+      player2.weapon = weapon
+
+      @engine.deliver(player1, player2).should be_nil
+    end
   end
 end
