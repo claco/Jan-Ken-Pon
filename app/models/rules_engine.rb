@@ -10,17 +10,12 @@ class RulesEngine
   end
 
   def process(a, b)
-    result = nil
-
     rules.each do |rule|
       result = rule.call(a, b)
 
-      if result
-        return result
-        break
-      end
+      return result if result
     end
 
-    return result
+    return
   end
 end
