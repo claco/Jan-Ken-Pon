@@ -15,12 +15,4 @@ describe Player do
     @player = Player.new(:id => 1, :weapon => weapon)
     @player.weapon.should == weapon
   end
-
-  it "should raise error without an id" do
-    lambda{ Player.new }.should raise_error(ArgumentError)
-  end
-
-  it "should raise error with 0 id" do
-    lambda{ Player.new(:id => 0) }.should raise_error(ArgumentError)
-  end
 end

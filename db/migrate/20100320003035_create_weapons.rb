@@ -4,6 +4,8 @@ class CreateWeapons < ActiveRecord::Migration
       t.string :name, :null => false
       t.string :icon, :null => false
     end
+
+    add_index :weapons, [:name], :unique => true
   end
 
   def self.down

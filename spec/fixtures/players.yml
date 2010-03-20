@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+player1:
+  id: 1
+  user_id: 1
+  name: Player1
+
+player2:
+  id: 2
+  user_id: 2
+  name: Player2

@@ -1,12 +1,6 @@
-class Player
-  attr_accessor :id, :weapon
+class Player < ActiveRecord::Base
+  attr_accessor :weapon
 
-  def initialize(params={})
-    self.id = params[:id] || 0
-    self.weapon = params[:weapon]
-
-    if self.id.to_i <= 0
-      raise ArgumentError, "id is required"
-    end
-  end
+  validates_presence_of :name
+  validates_uniqueness_of :name
 end

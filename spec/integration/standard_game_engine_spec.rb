@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe StandardGameEngine do
-  fixtures :weapons
-
   before :each do
     @engine = StandardGameEngine.new
   end
@@ -23,8 +21,10 @@ describe StandardGameEngine do
   it "should have Rock beat Scissors" do
     rock = @engine.weapons.first
     scissors = @engine.weapons.third
-    player1 = Player.new(:id => 1, :weapon => rock)
-    player2 = Player.new(:id => 2, :weapon => scissors)
+    player1 = players(:player1)
+    player1.weapon = rock
+    player2 = players(:player2)
+    player2.weapon = scissors
 
     winner = @engine.process(player1, player2)
     winner.should == player1
@@ -40,8 +40,10 @@ describe StandardGameEngine do
   it "should have Paper beat Rock" do
     rock = @engine.weapons.first
     paper = @engine.weapons.second
-    player1 = Player.new(:id => 1, :weapon => rock)
-    player2 = Player.new(:id => 2, :weapon => paper)
+    player1 = players(:player1)
+    player1.weapon = rock
+    player2 = players(:player2)
+    player2.weapon = paper
 
     winner = @engine.process(player1, player2)
     winner.should == player2
@@ -57,8 +59,10 @@ describe StandardGameEngine do
   it "should have Scissors beat Paper" do
     scissors = @engine.weapons.third
     paper = @engine.weapons.second
-    player1 = Player.new(:id => 1, :weapon => scissors)
-    player2 = Player.new(:id => 2, :weapon => paper)
+    player1 = players(:player1)
+    player1.weapon = scissors
+    player2 = players(:player2)
+    player2.weapon = paper
 
     winner = @engine.process(player1, player2)
     winner.should == player1
@@ -75,8 +79,8 @@ describe StandardGameEngine do
     rock = @engine.weapons.first
     paper = @engine.weapons.second
     scissors = @engine.weapons.third
-    player1 = Player.new(:id => 1)
-    player2 = Player.new(:id => 2)
+    player1 = players(:player1)
+    player2 = players(:player2)
 
     [rock, paper, scissors].each do |weapon|
       player1.weapon = weapon
