@@ -1,0 +1,13 @@
+<%=error_messages_for 'user'%>
+<% form_for :User do |f| -%>
+	<%= f.label :name, "Name" %>
+	<%= f.text_field :name %>
+
+	<%= f.label :email, "Email Address" %>
+	<%= f.text_field :email %>
+
+	<%= f.label :password, "Password" %>
+	<%= f.password_field :password %>
+	
+	<%= f.submit "Register", :disable_with => 'Registering...' %>
+<% end -%>

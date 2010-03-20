@@ -1,0 +1,21 @@
+<%=h flash[:notice]%>
+
+<% if authenticated? %>
+	<%if !current_user.confirmed%>
+		<%=link_to 'Resend Confirmation', resend_path%>
+	<%end%>
+	
+	<%=error_messages_for 'user'%>
+	<% form_for :User do |f| -%>
+		<%= f.label :email, "Email Address" %>
+		<%= f.text_field :email %>
+
+		<%= f.label :password, "New Password" %>
+		<%= f.password_field :password %>
+
+		<%= f.label :confirm_password, "Confirm Password" %>
+		<%= f.password_field :confirm_password %>
+
+		<%= f.submit "Update" %>
+	<% end -%>
+<% end %>

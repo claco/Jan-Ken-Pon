@@ -1,0 +1,10 @@
+<% if authenticated? %>
+	Welcome <%=h current_user.name%>
+	<%=link_to 'Logout', logout_path%>
+<% else %>
+	<%=link_to 'Login', login_path%>
+	<%=link_to 'Register', register_path%>
+	<%=link_to 'Forgot password?', forgot_path%>
+<% end %>
+
+<%=h flash.now[:notice]%>

@@ -12,7 +12,14 @@ module NavigationHelpers
       '/'
     when /the new game page/
       new_game_path
-
+    when /the new authentication page/
+      new_authentication_path
+    when /the login page/
+      login_path
+    when /the logout page/
+      logout_path
+    when /the account edit page/
+      account_path
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
