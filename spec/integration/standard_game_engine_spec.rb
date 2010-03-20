@@ -24,12 +24,12 @@ describe StandardGameEngine do
     player1 = Player.new(:id => 1, :weapon => rock)
     player2 = Player.new(:id => 2, :weapon => scissors)
 
-    winner = @engine.deliver(player1, player2)
+    winner = @engine.process(player1, player2)
     winner.should == player1
     winner.weapon.should == rock
     winner.weapon.name.should == 'Rock'
 
-    winner = @engine.deliver(player2, player1)
+    winner = @engine.process(player2, player1)
     winner.should == player1
     winner.weapon.should == rock
     winner.weapon.name.should == 'Rock'
@@ -41,12 +41,12 @@ describe StandardGameEngine do
     player1 = Player.new(:id => 1, :weapon => rock)
     player2 = Player.new(:id => 2, :weapon => paper)
 
-    winner = @engine.deliver(player1, player2)
+    winner = @engine.process(player1, player2)
     winner.should == player2
     winner.weapon.should == paper
     winner.weapon.name.should == 'Paper'
 
-    winner = @engine.deliver(player2, player1)
+    winner = @engine.process(player2, player1)
     winner.should == player2
     winner.weapon.should == paper
     winner.weapon.name.should == 'Paper'
@@ -58,12 +58,12 @@ describe StandardGameEngine do
     player1 = Player.new(:id => 1, :weapon => scissors)
     player2 = Player.new(:id => 2, :weapon => paper)
 
-    winner = @engine.deliver(player1, player2)
+    winner = @engine.process(player1, player2)
     winner.should == player1
     winner.weapon.should == scissors
     winner.weapon.name.should == 'Scissors'
 
-    winner = @engine.deliver(player2, player1)
+    winner = @engine.process(player2, player1)
     winner.should == player1
     winner.weapon.should == scissors
     winner.weapon.name.should == 'Scissors'
@@ -80,7 +80,7 @@ describe StandardGameEngine do
       player1.weapon = weapon
       player2.weapon = weapon
 
-      @engine.deliver(player1, player2).should be_nil
+      @engine.process(player1, player2).should be_nil
     end
   end
 end

@@ -58,14 +58,14 @@ describe GameEngine do
     rules_engine.should_receive(:process).with(player1, player2).and_return(player1)
 
     @engine = GameEngine.new(:rules_engine => rules_engine, :rules => [rule], :weapons => [weapon1, weapon2])
-    @engine.deliver(player1, player2).should == player1
+    @engine.process(player1, player2).should == player1
   end
 
   it "should throw an error when deliver doesn't get 2 players" do
-    lambda{ @engine.deliver }.should raise_error(ArgumentError)
-    lambda{ @engine.deliver(mock_model(Player)) }.should raise_error(ArgumentError)
-    lambda{ @engine.deliver(nil, nil) }.should raise_error(ArgumentError)
-    lambda{ @engine.deliver('nil', {:foo => 'bar'}) }.should raise_error(ArgumentError)
+    lambda{ @engine.process }.should raise_error(ArgumentError)
+    lambda{ @engine.process(mock_model(Player)) }.should raise_error(ArgumentError)
+    lambda{ @engine.process(nil, nil) }.should raise_error(ArgumentError)
+    lambda{ @engine.process('nil', {:foo => 'bar'}) }.should raise_error(ArgumentError)
   end
 
   it "should raise error if the same player ia sent twice" do
@@ -75,7 +75,7 @@ describe GameEngine do
     rules_engine = mock_model(RulesEngine)
 
     @engine = GameEngine.new(:rules_engine => rules_engine)
-    lambda{ @engine.deliver(player, player) }.should raise_error(ArgumentError)
+    lambda{ @engine.process(player, player) }.should raise_error(ArgumentError)
   end
 
   it "should raise error any player is unarmed" do
@@ -86,6 +86,6 @@ describe GameEngine do
     rules_engine = mock_model(RulesEngine)
 
     @engine = GameEngine.new(:rules_engine => rules_engine)
-    lambda{ @engine.deliver(player1, player2) }.should raise_error(ArgumentError)
+    lambda{ @engine.process(player1, player2) }.should raise_error(ArgumentError)
   end
 end

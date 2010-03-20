@@ -19,7 +19,7 @@ class GameEngine
     end
   end
 
-  def deliver(a, b)
+  def process(a, b)
     if a.blank? || b.blank? || !a.instance_of?(Player) || !b.instance_of?(Player)
       raise ArgumentError, "process must receive two players"
     elsif a.id == b.id
