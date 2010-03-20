@@ -4,7 +4,7 @@ class CreateRounds < ActiveRecord::Migration
       t.integer :game_id, :null => false
       t.integer :player_weapon_id
       t.integer :opponent_weapon_id
-      t.integer :winner_weapon_id
+      t.integer :winning_weapon_id
 
       t.timestamps
     end

@@ -6,7 +6,7 @@ describe Round do
       :game_id => 1,
       :player_weapon_id => 1,
       :opponent_weapon_id => 1,
-      :winner_weapon_id => 1
+      :winning_weapon_id => 1
     }
   end
 
