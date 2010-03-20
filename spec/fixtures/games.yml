@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type: 1
+  player1: 1
+  player2: 1
+  winner: 1
+  rounds: 1
+
+two:
+  type: 1
+  player1: 1
+  player2: 1
+  winner: 1
+  rounds: 1
