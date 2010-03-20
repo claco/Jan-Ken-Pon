@@ -1,7 +1,7 @@
 class CreatePlayers < ActiveRecord::Migration
   def self.up
     create_table :players do |t|
-      t.integer :user_id, :null => false
+      t.references :user, :null => false
       t.string :name, :null => false, :limit => 15
 
       t.timestamps

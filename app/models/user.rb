@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :locations
+  has_one :player
 
   acts_as_authentic do |c|
     c.require_password_confirmation = false
