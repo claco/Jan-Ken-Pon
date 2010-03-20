@@ -12,6 +12,7 @@ class Weapon < ActiveRecord::Base
 
   class << self
     def standard_weapons
+      # TODO: Needs caching
       self.find(1, 2, 3)
     end
   end
