@@ -1,7 +1,7 @@
 class CreateGames < ActiveRecord::Migration
   def self.up
     create_table :games do |t|
-      t.integer :type_id, :null => false
+      t.integer :mode_id, :null => false
       t.integer :player_id, :null => false
       t.integer :opponent_id, :null => false
       t.integer :winner_id
@@ -9,7 +9,7 @@ class CreateGames < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :games, [:type_id, :player_id, :opponent_id, :winner_id], :name => 'games_ids'
+    add_index :games, [:mode_id, :player_id, :opponent_id, :winner_id], :name => 'games_ids'
   end
 
   def self.down

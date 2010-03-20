@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Game do
   before(:each) do
     @valid_attributes = {
-      :type_id => 1,
+      :mode_id => 1,
       :player_id => 1,
       :opponent_id => 1,
       :winner_id => 1,

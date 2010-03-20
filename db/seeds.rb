@@ -9,3 +9,5 @@
 Weapon.create!(:id => 1, :name => 'Rock',     :icon => 'rock.png')
 Weapon.create!(:id => 2, :name => 'Paper',    :icon => 'paper.png')
 Weapon.create!(:id => 3, :name => 'Scissors', :icon => 'scissors.png')
+Mode.create!(:id => 1, :name => 'Rock, Paper, Scissors', :description => 'The Rock, Papar, Scissors we all know and love!')
+Mode.create!(:id => 2, :name => 'Rock, Paper, Scissors, Lizard, Spock', :description => 'A more advanced version.')
