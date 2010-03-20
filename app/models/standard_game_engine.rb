@@ -15,10 +15,6 @@ class StandardGameEngine < GameEngine
   end
 
   def weapons
-    [
-      Weapon.new(:id => 1, :name => 'Rock'),
-      Weapon.new(:id => 2, :name => 'Paper'),
-      Weapon.new(:id => 3, :name => 'Scissors')
-    ]
+    Weapon.standard_weapons
   end
 end

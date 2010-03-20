@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+rock:
+  id: 1
+  name: Rock
+  icon: rock.png
+
+paper:
+  id: 2
+  name: Paper
+  icon: paper.png
+
+scissors:
+  id: 3
+  name: Scissors
+  icon: scissors.png

@@ -5,3 +5,7 @@
 #   
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
+# Here for now. Usually better off as custom rake load task
+Weapon.create!(:id => 1, :name => 'Rock',     :icon => 'rock.png')
+Weapon.create!(:id => 2, :name => 'Paper',    :icon => 'paper.png')
+Weapon.create!(:id => 3, :name => 'Scissors', :icon => 'scissors.png')

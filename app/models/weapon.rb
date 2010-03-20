@@ -1,20 +1,15 @@
-class Weapon
-  attr_accessor :id, :name
-
-  def initialize(params)
-    @id = params[:id].to_i
-    @name = params[:name]
-
-    if @id <= 0
-      raise ArgumentError, 'id is invalid'
-    end
-  end
-
+class Weapon < ActiveRecord::Base
   def to_i
-    self.id
+    id
   end
 
   def to_s
-    self.name
+    name
+  end
+
+  class << self
+    def standard_weapons
+      self.find(1, 2, 3)
+    end
   end
 end

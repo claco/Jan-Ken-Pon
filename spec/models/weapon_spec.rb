@@ -1,21 +1,18 @@
 require 'spec_helper'
 
 describe Weapon do
+  fixtures :weapons
+
   it "should create a weapon" do
-    @weapon = Weapon.new(:id => 1, :name => 'Rock')
-    @weapon.id.should == 1
+    @weapon = Weapon.new(:name => 'Rock')
     @weapon.name.should == 'Rock'
   end
 
   it "should return id from to_i" do
-    Weapon.new(:id => 42, :name => 'Rock').to_i.should == 42
+    Weapon.find(1).to_i.should == 1
   end
 
   it "should return name from to_s" do
-    Weapon.new(:id => 42, :name => 'Rock').to_s.should == 'Rock'
-  end
-
-  it "should throw an error when id is <= 0" do
-    lambda{ Weapon.new(:id => 0) }.should raise_error(ArgumentError)
+    Weapon.find(1).to_s.should == 'Rock'
   end
 end

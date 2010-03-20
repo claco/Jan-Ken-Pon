@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe StandardGameEngine do
+  fixtures :weapons
+
   before :each do
     @engine = StandardGameEngine.new
   end
