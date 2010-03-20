@@ -71,9 +71,14 @@ class AccountController < ApplicationController
   def resend
     if authenticated?
       @user = current_user
-      @user.reset_perishable_token!
-      Notifications.deliver_confirmation(@user.email, @user.name, @user.perishable_token)
-      flash.now[:notice] = 'A conformation email has been sent to ' + @user.email
+      
+      if @user.confirmed?
+        flash.now[:notice] = 'Your email address has already been confirmed!'  
+      else
+        @user.reset_perishable_token!
+        Notifications.deliver_confirmation(@user.email, @user.name, @user.perishable_token)
+        flash.now[:notice] = 'A conformation email has been sent to ' + @user.email
+      end
     end
   end
 

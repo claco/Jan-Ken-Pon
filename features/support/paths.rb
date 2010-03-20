@@ -20,6 +20,8 @@ module NavigationHelpers
       logout_path
     when /the account edit page/
       account_path
+    when /the account resend page/
+      resend_path
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

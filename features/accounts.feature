@@ -67,6 +67,13 @@ Feature: Accounts
 	And "user@example.com" should be confirmed
 
 
+  Scenario: Resend confirmation fails for confirmed
+    Given the confirmed User "user@example.com" with the password "password" already exists
+	And I login as "user@example.com"
+	And I go to the account resend page
+	Then I should see "already been confirmed"
+
+
   Scenario: Forgot password
     Given the User "user@example.com" with the password "password" already exists
     And I see a link to "/forgot" named "Forgot password?"
