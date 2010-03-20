@@ -1,4 +1,7 @@
 class Weapon < ActiveRecord::Base
+  validates_presence_of :name
+  validates_presence_of :icon
+
   def to_i
     id
   end
