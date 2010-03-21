@@ -16,7 +16,12 @@ class AccountController < ApplicationController
           
             Notifications.deliver_confirmation(@user.email, @user.name, @user.perishable_token)
           
-            redirect_to root_path
+            
+            if params[:game].blank?
+              redirect_to root_path
+            else
+              redirect_to join_game_path(params[:game])
+            end
           end
       end
     end

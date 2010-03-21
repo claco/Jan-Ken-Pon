@@ -6,6 +6,10 @@ module ApplicationHelper
     @current_user_session = UserSession.find unless defined?(@current_user_session)
     @current_user = @current_user_session && @current_user_session.user
   end
+  
+  def current_player
+    current_user.player
+  end
 
   def authenticated?
     if current_user

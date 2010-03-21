@@ -1,0 +1,10 @@
+<% if !games.blank? %>
+	<h3>My Unfinished Games</h3>
+  <% for game in games %>
+    <div>
+		<%=h game.mode.name%> |
+		
+		<%=link_to 'Resume', join_game_path(game.key) %>
+	</div>
+  <% end %>
+<% end %>

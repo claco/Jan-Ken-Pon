@@ -3,7 +3,11 @@ class AuthenticationController < ApplicationController
     if request.post?
         @user_session = UserSession.new(params[:User])
         if @user_session.save
-          redirect_to root_url
+          if params[:game].blank?
+            redirect_to root_url
+          else
+            redirect_to join_game_path(params[:game])
+          end
         else
           flash.now[:notice] = 'Invalid email address or password'
         end

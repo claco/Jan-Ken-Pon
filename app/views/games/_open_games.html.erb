@@ -1,0 +1,15 @@
+<% if !games.blank? %>
+	<h3>Open Games</h3>
+  <% for game in games %>
+    <div>
+		<%=h game.mode.name%> |
+		
+		<% if authenticated? %>
+			<%=link_to 'Join', join_game_path(game.key) %>
+		<% else %>
+			<%=link_to 'Login', login_path(game.key) %> or
+			<%=link_to 'Register', register_path(game.key) %> to play!
+		<% end %>
+	</div>
+  <% end %>
+<% end %>

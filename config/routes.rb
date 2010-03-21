@@ -33,9 +33,9 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   map.root :controller => 'home'
   
-  map.login  'login',  :controller => 'authentication', :action => 'login'
+  map.login  'login/:game',  :controller => 'authentication', :action => 'login', :game => ''
   map.logout 'logout', :controller => 'authentication', :action => 'logout'
-  map.register 'register', :controller => 'account', :action => 'create'
+  map.register 'register/:game', :controller => 'account', :action => 'create', :game => ''
   map.account 'account', :controller => 'account', :action => 'edit'
   map.confirm 'confirm/:token', :controller => 'account', :action => 'confirm'
   map.resend 'account/resend', :controller => 'account', :action => 'resend'

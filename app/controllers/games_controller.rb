@@ -41,8 +41,10 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find_by_key(params[:id])
-    
-    if @game.opponent.blank?
+
+    if @game.player_id == current_player.id || @game.opponent_id == current_player.id
+      redirect_to( play_game_path(@game.key) )
+    elsif @game.opponent.blank?
       Game.transaction do
         @game.opponent = current_user.player
         @game.save!
