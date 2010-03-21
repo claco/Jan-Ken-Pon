@@ -13,7 +13,7 @@ class Game < ActiveRecord::Base
 
   before_validation :create_key
 
-  # TODO: This method is long. factor it out a tad more.
+  # TODO: This method is long. factor it out later.
   def deliver(player, weapon)
     if self.finished?
       raise ArgumentError, 'game is already over!'
@@ -38,14 +38,19 @@ class Game < ActiveRecord::Base
                 player.weapon = round.player_weapon
                 opponent = self.opponent
                 opponent.weapon = round.opponent_weapon
+                loser = nil
 
+                # TODO: move loser into Rounds as oposite of winner
                 winner = self.engine.process(player, opponent)
                 
                 # Draw/Tie
                 if winner.blank?
+                  round.draw = true
                   round.reset!
 
-                  return
+                  return {:winner => nil, :loser => nil, :draw => true}
+                else
+                  loser = winner.id == player.id ? opponent : player
                 end
                 
                 round.winning_weapon_id = winner.weapon.id
@@ -63,6 +68,8 @@ class Game < ActiveRecord::Base
                   end
                   self.save!
                   self.update_stats!
+                  
+                  return {:winner => winner, :lower => loser, :draw => false}
                 end
               end
             end

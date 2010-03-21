@@ -17,6 +17,9 @@
 	<% if !@previous_round.blank? && !@previous_round.winner.blank? %>
 	<p><%=h @previous_round.winner.name%> won the previous round!</p>
 	<% end %>
+	<% if !@current_round.blank? && @current_round.draw? %>
+		The last round ended in a draw!
+	<% end %>
 
 	<% if @game.already_made_choice?(current_player)%>
 		<p>You have chosen <%=h @game.current_choice(current_player).name%></p>

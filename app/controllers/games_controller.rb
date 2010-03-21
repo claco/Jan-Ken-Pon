@@ -60,6 +60,7 @@ class GamesController < ApplicationController
   def play
     @game = Game.find_by_key(params[:id])
     @previous_round = @game.previous_round
+    @current_round = @game.current_round
   end
 
   def deliver
