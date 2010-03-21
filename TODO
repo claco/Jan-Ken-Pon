@@ -6,3 +6,4 @@ Things I'm not yet happy with:
 - some models have too tight of dependency
 - flash.now[:notice], helper?
 - hate hardcoding rules for RPC, and RPSLS. maybe permutation calcs, or weights?
+- strings need serious i18n/l10n effort

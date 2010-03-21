@@ -18,4 +18,19 @@ module GamesHelper
   def render_create_game(mode=1)
     render :partial => "games/create_game", :locals => { :mode => mode }
   end
+
+  def periodically_check_for_opponent
+code =<<END
+  var checkForOpponent = true;
+  function onCheckForOpponentComplete(request) {
+    response = request.responseText.evalJSON(true);
+    if (response.game.opponent_id) {
+      location.reload();
+    };
+  };
+END
+
+    concat(javascript_tag(code))
+    periodically_call_remote(:url => play_game_url(@game.key, :format => :json), :frequency => '5', :condition => "checkForOpponent == true", :success => 'onCheckForOpponentComplete(request)')
+  end
 end

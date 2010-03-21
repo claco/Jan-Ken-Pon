@@ -61,11 +61,17 @@ class GamesController < ApplicationController
     @game = Game.find_by_key(params[:id])
     @previous_round = @game.previous_round
     @current_round = @game.current_round
+
+    respond_to do |format|
+      format.html { render }
+      format.json { render :json => @game }
+    end
   end
 
   def deliver
-    play
-
+    @game = Game.find_by_key(params[:id])
+    @previous_round = @game.previous_round
+    @current_round = @game.current_round
     @game.deliver(current_user.player, params[:weapon])
 
     redirect_to( play_game_path(@game.key) )

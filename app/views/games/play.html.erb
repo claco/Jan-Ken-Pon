@@ -3,6 +3,9 @@
 
 	<%= link_to 'Refesh', play_game_path(@game.key) %>
 	
+	<%= javascript_include_tag 'prototype' %>
+	<%= periodically_check_for_opponent%>
+
 	<hr />
 	<% if current_user.confirmed? %>
 		<div>
