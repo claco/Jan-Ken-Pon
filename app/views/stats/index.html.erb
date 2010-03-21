@@ -1,9 +1,1 @@
-<% if !@wins.blank? %>
-  <% for win in @wins %>
-    <div>
-		<%=h win.player.name%> | <%=h win.wins%>
-	</div>
-  <% end %>
-<% else %>
-  
-<% end %>
+<%=render_top_winners(20)%>

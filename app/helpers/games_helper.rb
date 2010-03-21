@@ -10,4 +10,8 @@ module GamesHelper
       render :partial => "games/my_open_games", :locals => { :games => current_player.open_games }
     end
   end
+
+  def render_top_winners(max=5)
+    render :partial => "stats/top_winners", :locals => { :stats => PlayerStats.leaders(max) }
+  end
 end

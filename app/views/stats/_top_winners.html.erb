@@ -1,0 +1,8 @@
+<% if !stats.blank? %>
+  <h3>Top Winners</h3>
+  <% for stat in stats %>
+  	<div>
+		<%=h stat.player.name%> | <%=h stat.wins%>
+	</div>
+  <% end %>
+<% end %>
