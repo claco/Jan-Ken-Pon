@@ -42,6 +42,11 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot 'forgot', :controller => 'account', :action => 'forgot'
   map.reset 'reset/:token', :controller => 'account', :action => 'reset'
 
+  map.resources :games
+  map.play_game 'games/play/:id', :controller => 'games', :action => 'play'
+  map.join_game 'games/join/:id', :controller => 'games', :action => 'join'
+  map.deliver   'games/play/:id/deliver/:weapon', :controller => 'games', :action => 'deliver'
+
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.

@@ -3,26 +3,37 @@ class AccountController < ApplicationController
 
   def create
     if request.post?
-        @user = User.new(params[:User])
+        @user = User.new(params[:user])
+        @player = Player.new(params[:player])
 
-        if @user.save
-          flash[:notice] = 'Account created successfully. A confirmation email has been sent to ' + @user.email
+        if [@user, @player].all?(&:valid?)
+          User.transaction do
+            @user.save!
+            @player.user = @user
+            @player.save!()
+
+            flash[:notice] = 'Account created successfully. A confirmation email has been sent to ' + @user.email
           
-          Notifications.deliver_confirmation(@user.email, @user.name, @user.perishable_token)
+            Notifications.deliver_confirmation(@user.email, @user.name, @user.perishable_token)
           
-          redirect_to account_path
-        end
+            redirect_to root_path
+          end
+      end
     end
   end
   
   def edit
-    if request.post?
-      @user = current_user
+    @user = current_user
+    @player = @user.player
 
-      email = params[:User][:email]
-      password = params[:User][:password]
-      confirm = params[:User][:confirm_password]
-      
+    if request.post?
+      email = params[:user][:email]
+      password = params[:user][:password]
+      confirm = params[:user][:password_confirmation]
+
+      @player.name = params[:player][:name]
+      @player.save
+
       if !email.blank?
         existing = User.find_by_email(email)
         

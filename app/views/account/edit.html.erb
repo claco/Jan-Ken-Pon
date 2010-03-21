@@ -5,17 +5,21 @@
 		<%=link_to 'Resend Confirmation', resend_path%>
 	<%end%>
 	
-	<%=error_messages_for 'user'%>
-	<% form_for :User do |f| -%>
-		<%= f.label :email, "Email Address" %>
-		<%= f.text_field :email %>
+	<%=error_messages_for 'user', 'player'%>
+	
+	<% form_tag do %>		
+		<%=label :user, :email, 'New Email Address:'%>
+		<%=text_field :user, :email, :value => ''%>
 
-		<%= f.label :password, "New Password" %>
-		<%= f.password_field :password %>
+		<%=label :user, :password, 'New Password:'%>
+		<%=password_field :user, :password%>
 
-		<%= f.label :confirm_password, "Confirm Password" %>
-		<%= f.password_field :confirm_password %>
+		<%=label :user, :password_confirmation, 'Confirm New Password:'%>
+		<%=password_field :user, :password_confirmation %>
 
-		<%= f.submit "Update" %>
+		<%=label :player, :name, 'Player Nic:'%>
+		<%=text_field :player, :name%>
+		
+		<%= submit_tag "Update" %>
 	<% end -%>
 <% end %>

@@ -1,0 +1,16 @@
+<h1>Listing games</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+	<td><%= game.mode.name %></td>
+	<td><%= link_to 'Join', join_game_path(game.key) %></td>
+    <td><%= link_to 'Continue', play_game_path(game.key) %></td>
+    <td><%= link_to 'Destroy', game_path(game.key), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+

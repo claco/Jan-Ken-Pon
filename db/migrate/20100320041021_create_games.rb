@@ -1,12 +1,13 @@
 class CreateGames < ActiveRecord::Migration
   def self.up
     create_table :games do |t|
-      t.string :key, :null => false, :limit => 24
+      t.string :key, :null => false, :limit => 25
       t.references :mode, :null => false
       t.references :player, :null => false
-      t.integer :opponent_id, :null => false
+      t.integer :opponent_id
       t.integer :winner_id
-      t.integer :rounds, :null => false, :default => 1
+      t.integer :total_rounds, :null => false, :default => 1
+      t.integer :completed_rounds, :null => false, :default => 0
       t.timestamps
     end
 

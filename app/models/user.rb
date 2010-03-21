@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_one :player
 
+  attr_accessor :password_confirmation 
+
   acts_as_authentic do |c|
     c.require_password_confirmation = false
     c.validate_email_field = false

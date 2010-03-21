@@ -1,4 +1,7 @@
 class Weapon < ActiveRecord::Base
+  has_many :mode_weapons
+  has_many :modes, :through => :mode_weapons
+
   validates_presence_of :name
   validates_presence_of :icon
   validates_uniqueness_of :name

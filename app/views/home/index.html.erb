@@ -1,6 +1,14 @@
 <% if authenticated? %>
 	Welcome <%=h current_user.name%>
 	<%=link_to 'Logout', logout_path%>
+	
+	<div>
+	New Game!
+	<% form_for Game.new do |f| -%>
+      <%= f.hidden_field :mode_id, :value => 1%>
+	  <%= f.submit "Fight!"%>
+	<% end -%>
+	</div>
 <% else %>
 	<%=link_to 'Login', login_path%>
 	<%=link_to 'Register', register_path%>

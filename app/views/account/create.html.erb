@@ -1,13 +1,21 @@
-<%=error_messages_for 'user'%>
-<% form_for :User do |f| -%>
-	<%= f.label :name, "Name" %>
-	<%= f.text_field :name %>
+<%= error_messages_for 'user', 'player' %>
 
-	<%= f.label :email, "Email Address" %>
-	<%= f.text_field :email %>
+<% form_for :user, :player do |f| -%>
+	<% fields_for :user do |user| %>
+	<%= user.label :name, "Name" %>
+	<%= user.text_field :name %>
 
-	<%= f.label :password, "Password" %>
-	<%= f.password_field :password %>
+	<%= user.label :email, "Email Address" %>
+	<%= user.text_field :email %>
+
+	<%= user.label :password, "Password" %>
+	<%= user.password_field :password %>
+	<% end %>
 	
-	<%= f.submit "Register", :disable_with => 'Registering...' %>
+	<% fields_for :player do |player| %>
+		<%= player.label :name, "Player Nic" %>
+		<%= player.text_field :name %>
+	<% end %>
+
+	<%= f.submit "Register" %>
 <% end -%>

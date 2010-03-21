@@ -5,4 +5,41 @@ class Round < ActiveRecord::Base
   belongs_to :player_weapon,   :class_name => 'Weapon'
   belongs_to :opponent_weapon, :class_name => 'Weapon'
   belongs_to :winning_weapon,  :class_name => 'Weapon'
+
+  def already_made_choice?(player)
+    if self.game.player_id == player.id && !self.player_weapon_id.blank?
+      true
+    elsif self.game.opponent_id == player.id && !self.opponent_weapon_id.blank?
+      true
+    else
+      false
+    end
+  end
+
+  def choose(player, weapon)
+    if self.game.player_id == player.id
+      self.player_weapon_id = weapon.to_i
+    elsif self.game.opponent_id == player.id
+      self.opponent_weapon_id = weapon.to_i
+    end
+  end
+
+  def have_both_weapons?
+    if !self.player_weapon_id.blank? && !self.opponent_weapon_id.blank?
+      true
+    else
+      false
+    end
+  end
+
+  def reset
+    self.player_weapon_id = nil
+    self.opponent_weapon_id = nil
+    self.winning_weapon_id = nil
+  end
+
+  def reset!
+    self.reset
+    self.save!
+  end
 end

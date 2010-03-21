@@ -1,0 +1,15 @@
+<% if @game.opponent.blank? %>
+	Waiting for an opponent to join the game...
+<% elsif !@game.winner.blank? %>
+	Game has already been completed!
+<% elsif !@game.completed_rounds == @game.total_rounds %>
+	Game has already been completed!
+<% else %>
+ Now playing <%=@game.opponent.name %>
+
+
+	  <% for weapon in @game.weapons %>
+	    <div><%=link_to weapon.name, deliver_path(:id => @game.key, :weapon => weapon) %></div>
+	  <% end %>
+
+<% end %>
