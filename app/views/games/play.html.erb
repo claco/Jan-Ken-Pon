@@ -1,12 +1,15 @@
 <% if !@game.has_all_players? %>
 	Waiting for an opponent to join the game...
+
+	<%= link_to 'Refesh', play_game_path(@game.key) %>
 <% elsif @game.finished? %>
 	<%=h @game.winner.name%> is the winner!
 <% else %>
 	Now playing <%=@game.find_opponent(current_player).name %>
 
 	<% if @game.already_made_choice?(current_player)%>
-		You have chosen <%=h @game.current_choice(current_player).name%>
+		<p>You have chosen <%=h @game.current_choice(current_player).name%></p>
+		<p>Waiting for opponent to choose... <%= link_to 'Refesh', play_game_path(@game.key) %></p>
 	<% else %>
 		<p>Choose your weapon!</p>
 		<% for weapon in @game.weapons %>
