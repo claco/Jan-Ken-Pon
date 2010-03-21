@@ -62,6 +62,7 @@ class Game < ActiveRecord::Base
                     self.winner_id = self.opponent_id
                   end
                   self.save!
+                  self.update_stats!
                 end
               end
             end
@@ -137,6 +138,10 @@ class Game < ActiveRecord::Base
   
   def weapons
     self.mode.weapons
+  end
+
+  def update_stats!
+    PlayerStats.increment_winner!(self.winner)
   end
 
   private

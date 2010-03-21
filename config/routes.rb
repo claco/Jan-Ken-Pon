@@ -46,6 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   map.play_game 'games/play/:id', :controller => 'games', :action => 'play'
   map.join_game 'games/join/:id', :controller => 'games', :action => 'join'
   map.deliver   'games/play/:id/deliver/:weapon', :controller => 'games', :action => 'deliver'
+  map.stats     'stats', :controller => 'stats', :action => 'index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -3,6 +3,10 @@
 	<%=link_to 'Logout', logout_path%>
 	
 	<div>
+		<%=link_to "Leader Board!", stats_path%>
+	</div>
+	
+	<div>
 	New Game!
 	<% form_for Game.new do |f| -%>
       <%= f.hidden_field :mode_id, :value => 1%>
