@@ -1,15 +1,16 @@
-<% if @game.opponent.blank? %>
+<% if !@game.has_all_players? %>
 	Waiting for an opponent to join the game...
-<% elsif !@game.winner.blank? %>
-	Game has already been completed!
-<% elsif !@game.completed_rounds == @game.total_rounds %>
-	Game has already been completed!
+<% elsif @game.finished? %>
+	<%=h @game.winner.name%> is the winner!
 <% else %>
- Now playing <%=@game.opponent.name %>
+	Now playing <%=@game.find_opponent(current_player).name %>
 
-
-	  <% for weapon in @game.weapons %>
-	    <div><%=link_to weapon.name, deliver_path(:id => @game.key, :weapon => weapon) %></div>
-	  <% end %>
-
+	<% if @game.already_made_choice?(current_player)%>
+		You have chosen <%=h @game.current_choice(current_player).name%>
+	<% else %>
+		<p>Choose your weapon!</p>
+		<% for weapon in @game.weapons %>
+	    	<div><%=link_to weapon.name, deliver_path(:id => @game.key, :weapon => weapon) %></div>
+		<% end %>
+	<% end %>
 <% end %>

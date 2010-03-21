@@ -24,6 +24,10 @@ class Round < ActiveRecord::Base
     end
   end
 
+  def current_choice(player)
+    self.game.player_id == player.id ? self.player_weapon : self.opponent_weapon
+  end
+
   def have_both_weapons?
     if !self.player_weapon_id.blank? && !self.opponent_weapon_id.blank?
       true

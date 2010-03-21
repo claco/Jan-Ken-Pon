@@ -85,6 +85,10 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def current_choice(player)
+    self.current_round.current_choice(player)
+  end
+
   def engine
     @engine ||= self.mode.engine
   end
@@ -105,9 +109,26 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def has_all_players?
+    if !self.player_id.blank? && !self.opponent_id.blank?
+      true
+    else
+      false
+    end
+  end
+
   def has_weapon?(weapon)
     # to_i is id in weapon, or just an int from params
     weapons.select{|w| w.id == weapon.to_i}.length == 1
+  end
+
+  # TODO: my_opponent is more dsl, but find_opponent(player) is more AR like
+  def find_opponent(player)
+    self.player_id == player.id ? self.opponent : self.player
+  end
+  
+  def already_made_choice?(player)
+    current_round.already_made_choice?(player)
   end
   
   def weapons
