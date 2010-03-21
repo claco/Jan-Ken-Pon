@@ -14,8 +14,8 @@
 <% else %>
 	Now playing round <%=h @game.current_round.number%> with <%=@game.find_opponent(current_player).name %>
 
-	<% if @game.previous_round && @game.previous_round.winner %>
-	<p><%=h @game.previous_round.winner.name%> won the previous round!</p>
+	<% if @previous_round.defined? && @previous_round.winner %>
+	<p><%=h @previous_round.winner.name%> won the previous round!</p>
 	<% end %>
 
 	<% if @game.already_made_choice?(current_player)%>
