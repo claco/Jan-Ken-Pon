@@ -24,7 +24,7 @@ code =<<END
   var checkForOpponent = true;
   function onCheckForOpponentComplete(request) {
     response = request.responseText.evalJSON(true);
-    if (response.game.opponent_id) {
+    if (response.has_opponent) {
       location.reload();
     };
   };
@@ -33,4 +33,19 @@ END
     concat(javascript_tag(code))
     periodically_call_remote(:url => play_game_url(@game.key, :format => :json), :frequency => '5', :condition => "checkForOpponent == true", :success => 'onCheckForOpponentComplete(request)')
   end
+
+  def periodically_check_for_opponent_choice
+code =<<END
+  var checkForOpponentChoice = true;
+  function onCheckForOpponentChoiceComplete(request) {
+    response = request.responseText.evalJSON(true);
+    if (response.has_opponent_choice) {
+      location.reload();
+    };
+  };
+END
+
+      concat(javascript_tag(code))
+      periodically_call_remote(:url => play_game_url(@game.key, :format => :json), :frequency => '5', :condition => "checkForOpponentChoice == true", :success => 'onCheckForOpponentChoiceComplete(request)')
+    end
 end

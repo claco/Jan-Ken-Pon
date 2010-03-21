@@ -1,5 +1,6 @@
 Things I'm not yet happy with:
 
+- need "rematch" -> "new" + "join" functionality at end of game beteen two players
 - auth/account needs requires_auth checks and such
 - probably needs captchas for invite sending related tasks
 - tests need serious fixing, complete cucumber features
@@ -7,3 +8,4 @@ Things I'm not yet happy with:
 - flash.now[:notice], helper?
 - hate hardcoding rules for RPC, and RPSLS. maybe permutation calcs, or weights?
 - strings need serious i18n/l10n effort
+- not fond of prototype. jQuery switch later

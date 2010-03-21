@@ -64,7 +64,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       format.html { render }
-      format.json { render :json => @game }
+      format.json { render :json => { :has_opponent => !@game.opponent_id.blank?, :has_opponent_choice => @game.finished? || @current_round.have_both_weapons? } }
     end
   end
 
