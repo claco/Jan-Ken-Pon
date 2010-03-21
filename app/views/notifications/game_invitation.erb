@@ -1,0 +1,7 @@
+Dear <%=@email%>,
+
+<%=@player.user.name%> has created a new game of Jan Ken Pon (Rock, Paper, Scissors) online and has challenged you to a dual.
+
+If you haven't yet registered, click here to get started: <%=register_url(@game.key)%>
+
+If you're already registered, click here to join the game: <%=login_url(@game.key)%>

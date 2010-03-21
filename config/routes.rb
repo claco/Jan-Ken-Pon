@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resend 'account/resend', :controller => 'account', :action => 'resend'
   map.forgot 'forgot', :controller => 'account', :action => 'forgot'
   map.reset 'reset/:token', :controller => 'account', :action => 'reset'
+  map.invite 'invite/:game', :controller => 'account', :action => 'invite', :game => ''
 
   map.resources :games
   map.play_game 'games/play/:id', :controller => 'games', :action => 'play'

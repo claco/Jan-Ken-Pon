@@ -13,6 +13,16 @@
 	  <%= f.submit "Fight!"%>
 	<% end -%>
 	</div>
+	
+	<% if current_user.confirmed? %>
+		<div>
+			<h3>Invite a friend!</h3>
+		<% form_for :invite, :url => invite_url do |f| -%>
+		  	<%= f.text_field :email %>
+			<%= f.submit "Invite" %>
+		<% end -%>
+		</div>
+	<% end %>
 <% else %>
 	<%=link_to 'Login', login_path%>
 	<%=link_to 'Register', register_path%>

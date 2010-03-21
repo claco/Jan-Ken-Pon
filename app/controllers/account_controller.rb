@@ -1,7 +1,45 @@
 class AccountController < ApplicationController
   include ApplicationHelper
 
+  def invite
+    if authenticated? && current_user.confirmed?
+      if request.post?
+        game = params[:game]
+        
+        if game.blank?
+          Notifications.deliver_invitation(params[:invite][:email], current_player)
+          flash[:notice] = 'Invitation ha ben sent!'
+          
+          redirect_to root_path
+        else
+          game = Game.find_by_key(game)
+            
+          if game.blank?
+            flash.now[:notice] = "Can't find the specific game!"
+          else
+            Notifications.deliver_game_invitation(game, params[:invite][:email], current_player)
+
+            flash[:notice] = 'Invitation has been sent!'
+            redirect_to play_game_path(game.key)  
+          end
+        end
+      end
+    else
+      flash.now[:notice] = 'Only confirmed users may send invitations!'
+    end
+  end
+
   def create
+    # TODO: before_filter
+    if authenticated?
+      game = params[:game]
+      if game.blank?
+        redirect_to root_url
+      else
+        redirect_to join_game_url(game)
+      end
+    end
+
     if request.post?
         @user = User.new(params[:user])
         @player = Player.new(params[:player])

@@ -4,9 +4,15 @@
 	<%= link_to 'Refesh', play_game_path(@game.key) %>
 	
 	<hr />
-	<p>
-		
-	</p>
+	<% if current_user.confirmed? %>
+		<div>
+			<h3>Invite a friend!</h3>
+		<% form_for :invite, :url => invite_url(@game.key) do |f| -%>
+		  	<%= f.text_field :email %>
+			<%= f.submit "Invite" %>
+		<% end -%>
+		</div>
+	<% end %>
 <% elsif @game.finished? %>
 	<p><%=h @game.previous_round.winner.name%> won the previous round!</p>
 

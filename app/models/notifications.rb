@@ -18,4 +18,22 @@ class Notifications < ActionMailer::Base
     body       :email => email, :name => name, :token => token
   end
 
+  def invitation(email, from_player)
+    subject    'Jan Ken Pon Invitation'
+    recipients email
+    from       'noreply@chrislaco.com'
+    sent_on    Time.now
+    
+    body       :email => email, :player => from_player
+  end
+  
+  def game_invitation(game, email, from_player)
+    subject    'Jan Ken Pon Game Invitation'
+    recipients email
+    from       'noreply@chrislaco.com'
+    sent_on    Time.now
+    
+    body       :game => game, :email => email, :player => from_player
+  end
+
 end

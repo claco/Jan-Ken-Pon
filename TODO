@@ -1,0 +1,7 @@
+Things I'm not yet happy with:
+
+- auth/account needs requires_auth checks and such
+- probably needs captchas for invite sending related tasks
+- tests need serious fixing, complete cucumber features
+- some models have too tight of dependency
+- flash.now[:notice], helper?
