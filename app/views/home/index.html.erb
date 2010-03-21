@@ -6,13 +6,7 @@
 		<%=link_to "Leader Board!", stats_path%>
 	</div>
 	
-	<div>
-	New Game!
-	<% form_for Game.new do |f| -%>
-      <%= f.hidden_field :mode_id, :value => 1%>
-	  <%= f.submit "Fight!"%>
-	<% end -%>
-	</div>
+	<%=render_create_game %>
 	
 	<% if current_user.confirmed? %>
 		<div>

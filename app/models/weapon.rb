@@ -19,5 +19,10 @@ class Weapon < ActiveRecord::Base
       # TODO: Needs caching
       self.find(1, 2, 3)
     end
+
+    def advanced_weapons
+      # TODO needs to be more dynamic
+      self.find(1, 2, 3, 4, 5)
+    end
   end
 end

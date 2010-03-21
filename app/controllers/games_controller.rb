@@ -79,8 +79,10 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        GameQueue.create!(:game => @game, :mode => @game.mode)
-        #flash[:notice] = 'Game was successfully created.'
+        if params[:private].blank?
+          GameQueue.create!(:game => @game, :mode => @game.mode)
+        end
+
         format.html { redirect_to( play_game_path(@game.key) ) }
         format.xml  { render :xml => @game, :status => :created, :location => @game }
       else

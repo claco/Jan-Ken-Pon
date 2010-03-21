@@ -1,0 +1,22 @@
+<div>
+New Game!
+<% form_for Game.new do |f| -%>
+  <%= f.hidden_field :mode_id, :value => mode %>
+
+  <%=label_tag 'private', 'Private Game' %>
+  <%=check_box_tag 'private', :value => true%>
+  <%= f.submit "Fight!"%>
+<% end -%>
+</div>
+
+
+<div>
+Rock Paper Scissors Lizard Spock!
+<% form_for Game.new do |f| -%>
+  <%= f.hidden_field :mode_id, :value => 2 %>
+
+  <%=label_tag 'private', 'Private Game' %>
+  <%=check_box_tag 'private', :value => true%>
+  <%= f.submit "Fight!"%>
+<% end -%>
+</div>

@@ -5,3 +5,4 @@ Things I'm not yet happy with:
 - tests need serious fixing, complete cucumber features
 - some models have too tight of dependency
 - flash.now[:notice], helper?
+- hate hardcoding rules for RPC, and RPSLS. maybe permutation calcs, or weights?

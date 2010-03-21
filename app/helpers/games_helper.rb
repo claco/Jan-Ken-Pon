@@ -14,4 +14,8 @@ module GamesHelper
   def render_top_winners(max=5)
     render :partial => "stats/top_winners", :locals => { :stats => PlayerStats.leaders(max) }
   end
+
+  def render_create_game(mode=1)
+    render :partial => "games/create_game", :locals => { :mode => mode }
+  end
 end
