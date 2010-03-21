@@ -36,6 +36,16 @@ class Round < ActiveRecord::Base
     end
   end
 
+  def winner
+    if self.winning_weapon_id == self.player_weapon_id
+      self.game.player
+    elsif self.winning_weapon_id == self.opponent_weapon_id
+      self.game.opponent
+    else
+      nil
+    end
+  end
+
   def reset
     self.player_weapon_id = nil
     self.opponent_weapon_id = nil

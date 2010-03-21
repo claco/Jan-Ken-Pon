@@ -75,6 +75,10 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def previous_round
+    self.rounds.find_by_number(self.completed_rounds)
+  end
+
   def current_round
     if self.completed_rounds < self.total_rounds
       number = self.completed_rounds + 1
