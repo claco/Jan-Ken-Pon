@@ -1,25 +1,40 @@
-<%=h flash[:notice]%>
-
 <% if authenticated? %>
 	<%if !current_user.confirmed%>
-		<%=link_to 'Resend Confirmation', resend_path%>
+		<p>
+			<%=link_to 'Resend Email Confirmation', resend_path%>
+		</p>
 	<%end%>
-	
+
 	<%=error_messages_for 'user', 'player'%>
 	
-	<% form_tag do %>		
-		<%=label :user, :email, 'New Email Address:'%>
+	<% form_tag do %>
+		<fieldset>
+		<p>
+		<%=label :user, :email, 'New Email Address:'%><br />
 		<%=text_field :user, :email, :value => ''%>
-
-		<%=label :user, :password, 'New Password:'%>
+		</p>
+		<p>
+		<%=label :user, :password, 'New Password:'%><br />
 		<%=password_field :user, :password%>
-
-		<%=label :user, :password_confirmation, 'Confirm New Password:'%>
+		</p>
+		<p>
+		<%=label :user, :password_confirmation, 'Confirm New Password:'%><br />
 		<%=password_field :user, :password_confirmation %>
-
-		<%=label :player, :name, 'Player Nic:'%>
+		</p>
+		</fieldset>
+		<fieldset>
+		<p>
+		<%=label :user, :name, 'Name:'%><br />
+		<%=text_field :user, :name%>
+		</p>
+		<p>
+		<%=label :player, :name, 'Player Nic:'%><br />
 		<%=text_field :player, :name%>
+		</p>
 		
-		<%= submit_tag "Update" %>
+		<p>
+			<%= image_submit_tag("buttons/save.png", :id => "sav", :name => "save") %>
+		</p>
+		</fieldset>
 	<% end -%>
 <% end %>

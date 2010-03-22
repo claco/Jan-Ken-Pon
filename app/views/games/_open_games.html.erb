@@ -1,15 +1,17 @@
 <% if !games.blank? %>
-	<h3>Open Games</h3>
-  <% for game in games %>
-    <div>
-		<%=h game.mode.name%> |
+	<div id="opengames">
+	<h2>Join Open Games</h2>
+	  <% for game in games %>
+	    <div class="opengame">
+			<%=image_tag "modes/" + game.mode_id.to_s + ".png"%>
 		
-		<% if authenticated? %>
-			<%=link_to 'Join', join_game_path(game.key) %>
-		<% else %>
-			<%=link_to 'Login', login_path(game.key) %> or
-			<%=link_to 'Register', register_path(game.key) %> to play!
-		<% end %>
+			<% if authenticated? %>
+				<%=link_to image_tag("buttons/join.png"), join_game_path(game.key) %>
+			<% else %>
+				<%=link_to image_tag("buttons/login.png"), login_path(game.key) %>
+				<%=link_to image_tag("buttons/register.png"), register_path(game.key) %>
+			<% end %>
+		</div>
+	  <% end %>
 	</div>
-  <% end %>
 <% end %>

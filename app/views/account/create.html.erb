@@ -1,21 +1,33 @@
 <%= error_messages_for 'user', 'player' %>
 
 <% form_for :user, :player do |f| -%>
+	<fieldset>
 	<% fields_for :user do |user| %>
-	<%= user.label :name, "Name" %>
+	<p>
+	<%= user.label :name, "Name" %><br />
 	<%= user.text_field :name %>
+	</p>
 
-	<%= user.label :email, "Email Address" %>
+	<p>
+	<%= user.label :email, "Email Address" %><br />
 	<%= user.text_field :email %>
+	</p>
 
-	<%= user.label :password, "Password" %>
+	<p>
+	<%= user.label :password, "Password" %><br />
 	<%= user.password_field :password %>
+	</p>
 	<% end %>
 	
 	<% fields_for :player do |player| %>
-		<%= player.label :name, "Player Nic" %>
+	<p>
+		<%= player.label :name, "Player Nic" %><br />
 		<%= player.text_field :name %>
+	</p>
 	<% end %>
 
-	<%= f.submit "Register" %>
+		<p>
+			<%= image_submit_tag("buttons/register.png", :id => "register", :name => "register") %>
+		</p>
+	</fieldset>
 <% end -%>

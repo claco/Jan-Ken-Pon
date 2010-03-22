@@ -1,22 +1,37 @@
-<div>
-New Game!
-<% form_for Game.new do |f| -%>
-  <%= f.hidden_field :mode_id, :value => mode %>
+<div id="#creategames">
+	<div class="creategame">
+		<h2>Rock, Paper, Scissors</h2>
+		<%=image_tag "modes/1.png"%>
+		
+		<% form_for Game.new do |f| -%>
+			<fieldset>
+			  	<p>
+					<%= f.hidden_field :mode_id, :value => mode %>
+				  <%=label_tag 'private', 'Private Game?' %>
+				  <%=check_box_tag 'private', :value => true%>
+				</p>
+				<p>
+				<%= image_submit_tag("buttons/fight.png", :name => "fight") %>
+				</p>
+			</fieldset>
+		<% end -%>
+	</div>
+	
+	<div class="creategame">
+		<h2>Rock, Paper, Scissors, Lizard, Spock</h2>
+		<%=image_tag "modes/2.png"%>
 
-  <%=label_tag 'private', 'Private Game' %>
-  <%=check_box_tag 'private', :value => true%>
-  <%= f.submit "Fight!"%>
-<% end -%>
-</div>
-
-
-<div>
-Rock Paper Scissors Lizard Spock!
-<% form_for Game.new do |f| -%>
-  <%= f.hidden_field :mode_id, :value => 2 %>
-
-  <%=label_tag 'private', 'Private Game' %>
-  <%=check_box_tag 'private', :value => true%>
-  <%= f.submit "Fight!"%>
-<% end -%>
+		<% form_for Game.new do |f| -%>
+		<fieldset>
+			<p>
+	  			<%= f.hidden_field :mode_id, :value => 2 %>
+			  <%=label_tag 'private', 'Private Game?' %>
+			  <%=check_box_tag 'private', :value => true%>
+			</p>
+			<p>
+			<%= image_submit_tag("buttons/fight.png", :name => "fight") %>
+			</p>
+		</fieldset>
+	<% end -%>
+	</div>
 </div>

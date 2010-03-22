@@ -1,0 +1,50 @@
+/* 585D95 , 231D60*/
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Verdana, Helvetica;
+    font-size: 76%;
+}
+fieldset {
+    border: none;
+}
+#wrapper {
+    width: 100%;
+}
+#content {
+    width: 80%;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#header {
+    background-color: #585D95;
+    font-size: 0.9em;
+    padding: 5px;
+    border-bottom: 1px solid #231D60;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+#footer {
+    color: #ababab;
+    padding: 10px;
+    margin-top: 50px;
+}
+#menu, #menu a {
+    color: white;
+    text-decoration: none;
+    text-align: right;
+}
+#greeting {
+    width: 250px;
+    float: left;
+}
+#greeting, #greeting a {
+    color: white;
+    text-decoration: none;
+}
+#notice {
+    font-weight: bold;
+}

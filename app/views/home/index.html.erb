@@ -1,32 +1,29 @@
 <% if authenticated? %>
-	Welcome <%=h current_user.name%>
-	<%=link_to 'Logout', logout_path%>
-	
-	<div>
-		<%=link_to "Leader Board!", stats_path%>
-	</div>
-	
-	<%=render_create_game %>
-	
+	<h2>Welcome <%=h current_user.name%></h2>
+
 	<% if current_user.confirmed? %>
-		<div>
-			<h3>Invite a friend!</h3>
+		<div id="invite">
 		<% form_for :invite, :url => invite_url do |f| -%>
-		  	<%= f.text_field :email %>
-			<%= f.submit "Invite" %>
+			<fieldset>
+			<p>
+		  		<%= f.text_field :email %>
+				<%= f.submit "Invite a friend!"%>
+			</p>
 		<% end -%>
 		</div>
 	<% end %>
+
+	<%=render_create_game %>
 <% else %>
-	<%=link_to 'Login', login_path%>
-	<%=link_to 'Register', register_path%>
-	<%=link_to 'Forgot password?', forgot_path%>
+	<div id="actions">
+		<h2>Get Started</h2>
+		<div class="action">
+			<%=link_to image_tag("buttons/login.png"), login_path%>
+			<%=link_to image_tag("buttons/register.png"), register_path%>
+		</div>
+	</div>
 <% end %>
 
-<%=h flash.now[:notice]%>
-
-
-<hr />
 <%=render_open_games%>
 
 <%=render_my_open_games%>

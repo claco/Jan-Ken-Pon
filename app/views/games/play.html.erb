@@ -1,45 +1,66 @@
-<% if !@game.has_all_players? %>
-	Waiting for an opponent to join the game...
+<h2><%=h @game.mode.name%></h2>
 
-	<%= link_to 'Refesh', play_game_path(@game.key) %>
+<% if !@game.has_all_players? %>
+	<p>
+		Waiting for an opponent to join the game....  (<%= link_to 'Refesh', play_game_path(@game.key) %>)
+	</p>
 	
 	<%= javascript_include_tag 'prototype' %>
 	<%= periodically_check_for_opponent%>
 
-	<hr />
 	<% if current_user.confirmed? %>
-		<div>
-			<h3>Invite a friend!</h3>
+		<div id="invite">
+			<p>While you're waiting maybe you'd like to invite a friend to this game?</p>
 		<% form_for :invite, :url => invite_url(@game.key) do |f| -%>
-		  	<%= f.text_field :email %>
-			<%= f.submit "Invite" %>
+			<fieldset>
+			  	<%= f.text_field :email %>
+				<%= f.submit "Invite" %>
+			</fieldset>
 		<% end -%>
 		</div>
 	<% end %>
 <% elsif @game.finished? %>
+	<h3>Game Over!</h3>
 	<p><%=h @game.previous_round.winner.name%> won the previous round!</p>
+	<div id="weapons">
+		<%=image_tag("weapons/win/" + @game.previous_round.winning_weapon.icon)%>
+		<%=image_tag("weapons/lose/" + @game.previous_round.losing_weapon.icon)%>
+	</div>
 
-	<%=h @game.winner.name%> is game the winner!
+	<h3>Game Winner?</h3>
+	<p><%=h @game.winner.name%> won the most rounds n this game and the winner!</p>
 <% else %>
-	Now playing round <%=h @game.current_round.number%> with <%=@game.find_opponent(current_player).name %>
+	<p>
+		Now playing round <%=h @game.current_round.number%> against <%=@game.find_opponent(current_player).name %>
+	</p>
 
 	<% if !@previous_round.blank? && !@previous_round.winner.blank? %>
-	<p><%=h @previous_round.winner.name%> won the previous round!</p>
+		<h3>Round Winner?</h3>
+		<p><%=h @previous_round.winner.name%> won the previous round!</p>
+		<div id="weapons">
+			<%=image_tag("weapons/win/" + @game.previous_round.winning_weapon.icon)%>
+			<%=image_tag("weapons/lose/" + @game.previous_round.losing_weapon.icon)%>
+		</div>
 	<% end %>
 	<% if !@current_round.blank? && @current_round.draw? %>
-		The last round ended in a draw!
+		<p>The last round ended in a draw!</p>
 	<% end %>
 
 	<% if @game.already_made_choice?(current_player)%>
-		<p>You have chosen <%=h @game.current_choice(current_player).name%></p>
-		<p>Waiting for opponent to choose... <%= link_to 'Refesh', play_game_path(@game.key) %></p>
-
+		<p>Waiting for opponent to choose a weapon....  (<%=link_to 'Refesh', play_game_path(@game.key) %>)</p>
 		<%= javascript_include_tag 'prototype' %>
 		<%= periodically_check_for_opponent_choice%>
+
+		<h3>You have chosen!</h3>
+		<div id="weapons">
+		<%=image_tag("weapons/selected/" + @game.current_choice(current_player).icon)%>
+		</div>
 	<% else %>
-		<p>Choose your weapon!</p>
+		<h3>Choose your weapon!</h3>
+		<div id="weapons">
 		<% for weapon in @game.weapons %>
-	    	<div><%=link_to weapon.name, deliver_path(:id => @game.key, :weapon => weapon) %></div>
+	    	<%=link_to image_tag("weapons/" + weapon.icon, :mouseover => "weapons/selected/" + weapon.icon), deliver_path(:id => @game.key, :weapon => weapon) %>
 		<% end %>
+		</div>
 	<% end %>
 <% end %>

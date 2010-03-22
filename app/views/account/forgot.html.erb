@@ -1,11 +1,15 @@
-<%=h flash[:notice]%>
-
 <% if !authenticated? %>	
 	<%=error_messages_for 'user'%>
+	
 	<% form_for :User do |f| -%>
-		<%= f.label :email, "Email Address" %>
+		<fieldset>
+		<p>
+		<%= f.label :email, "Email Address" %><br />
 		<%= f.text_field :email %>
-
-		<%= f.submit "Reset" %>
+		</p>
+		<p>
+			<%= image_submit_tag("buttons/send.png", :id => "send", :name => "send") %>
+		</p>
+		</fieldset>
 	<% end -%>
 <% end %>

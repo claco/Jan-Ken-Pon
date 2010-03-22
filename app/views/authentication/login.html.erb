@@ -1,11 +1,15 @@
 <% form_for :User do |f| -%>
-	<%= f.label :email, "Email Address" %>
-	<%= f.text_field :email %>
-	
-	<%= f.label :password, "Password" %>
-	<%= f.password_field :password %>
-	
-	<%= f.submit "Login", :disable_with => 'Logining...' %>
+	<fieldset>
+		<p>
+			<%= f.label :email, "Email Address" %><br />
+			<%= f.text_field :email %>
+		</p>
+		<p>
+			<%= f.label :password, "Password" %><br />
+			<%= f.password_field :password %>
+		</p>
+		<p>
+			<%= image_submit_tag("buttons/login.png", :id => "agree", :name => "agree") %>
+		</p>
+	</fieldset>
 <% end -%>
-
-<%=h flash.now[:notice]%>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+  		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  		<title>Jan Ken Pon: The Art of Rock, Paper, Scissors and Friends.</title>
+  		<%= stylesheet_link_tag 'default' %>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="greeting">
+					<%=link_to "Home", root_path%> &laquo;
+					<%=link_to "Leader Board!", stats_path%>
+				</div>
+				<div id="menu">
+					<% if authenticated? %>
+					<%=link_to 'Account', account_path%> &raquo;
+					<%=link_to 'Logout', logout_path%>
+					<% else %>
+					<%=link_to "Login", login_url%> &raquo;
+					<%=link_to "Register", register_url%> &raquo;
+					<%=link_to 'Forgot password?', forgot_path%>
+					<% end %>
+				</div>
+			</div>
+			<div id="content">
+				<div id="notice">
+					<p><%=h flash[:notice] %></p>
+				</div>
+				<%= yield %>
+			</div>
+			<div id="footer">
+			</div>
+		</div>
+	</body>
+</html>

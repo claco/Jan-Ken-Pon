@@ -3,7 +3,7 @@ class AccountController < ApplicationController
 
   def invite
     if authenticated? && current_user.confirmed?
-      if request.post?
+      if request.post? && !params[:invite][:email].blank?
         game = params[:game]
         
         if game.blank?
@@ -23,6 +23,8 @@ class AccountController < ApplicationController
             redirect_to play_game_path(game.key)  
           end
         end
+      else
+        redirect_to root_path
       end
     else
       flash.now[:notice] = 'Only confirmed users may send invitations!'
@@ -74,6 +76,8 @@ class AccountController < ApplicationController
       password = params[:user][:password]
       confirm = params[:user][:password_confirmation]
 
+      @user.name = params[:user][:name]
+      @user.save(false)
       @player.name = params[:player][:name]
       @player.save
 
@@ -131,7 +135,7 @@ class AccountController < ApplicationController
       else
         @user.reset_perishable_token!
         Notifications.deliver_confirmation(@user.email, @user.name, @user.perishable_token)
-        flash.now[:notice] = 'A conformation email has been sent to ' + @user.email
+        flash.now[:notice] = 'A confirmation email has been sent to ' + @user.email
       end
     end
   end
