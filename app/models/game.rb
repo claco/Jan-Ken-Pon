@@ -1,4 +1,4 @@
-require 'uuid'
+require 'uuidtools'
 
 class Game < ActiveRecord::Base
   validates_presence_of :key
@@ -155,7 +155,7 @@ class Game < ActiveRecord::Base
     # TODO: into helper
     def create_key
       if self.key.blank?
-        self.key = UUID.create.to_i.to_s(36)
+        self.key = UUIDTools::UUID.random_create.to_i.to_s(36)
       end
     end
 end
