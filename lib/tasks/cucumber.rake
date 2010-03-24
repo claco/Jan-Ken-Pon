@@ -26,6 +26,14 @@ begin
       t.profile = 'wip'
     end
 
+    Cucumber::Rake::Task.new({:rcov => 'db:test:prepare'}, 'Run all features with coverage') do |t|
+      t.binary = vendored_cucumber_bin # If nil, the gem's binary is used.
+      t.fork = true # You may get faster startup if you set this to false
+      t.profile = 'default'
+      t.rcov = true
+      t.rcov_opts = %w{--text-summary --rails --exclude osx\/objc,gems\/,spec\/,features\/}
+    end
+
     desc 'Run all features'
     task :all => [:ok, :wip]
   end
