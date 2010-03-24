@@ -1,4 +1,3 @@
 authlogic
 uuidtools
-action_mailer_optional_tls --source http://github.com/collectiveidea/action_mailer_optional_tls.git
 smtp_tls
