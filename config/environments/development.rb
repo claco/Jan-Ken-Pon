@@ -13,15 +13,7 @@ config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 config.action_mailer.default_url_options = { :host => "127.0.0.1:3000" }
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-  :address        => "smtp.gmail.com",
-  :port           => 587,
-  :enable_starttls_auto => true,
-  :user_name      => ENV["ACTIONMAILER_USERNAME"],
-  :password       => ENV["ACTIONMAILER_PASSWORD"],
-  :authentication => :plain
-}
+config.action_mailer.delivery_method = :sendmail
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = true

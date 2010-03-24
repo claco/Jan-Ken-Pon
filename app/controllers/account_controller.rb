@@ -52,10 +52,10 @@ class AccountController < ApplicationController
             @player.user = @user
             @player.save!()
 
-            flash[:notice] = 'Account created successfully. A confirmation email has been sent to ' + @user.email
-          
             Notifications.deliver_confirmation(@user.email, @user.name, @user.perishable_token)
-          
+
+            flash[:notice] = 'Account created successfully. A confirmation email has been sent to ' + @user.email
+                    
             
             if params[:game].blank?
               redirect_to root_path
