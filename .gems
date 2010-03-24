@@ -1,3 +1,4 @@
 authlogic
 uuidtools
 smtp_tls
+action_mailer_tls
