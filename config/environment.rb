@@ -22,7 +22,8 @@ Rails::Initializer.run do |config|
   config.gem 'mysql', :lib => false
   config.gem 'authlogic', :lib => false
   config.gem 'uuidtools', :lib => false
-  config.gem 'action_mailer_tls', :lib => false
+  config.gem 'action_mailer_optional_tls', :lib => false
+  #config.gem 'action_mailer_tls', :lib => false
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
