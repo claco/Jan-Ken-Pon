@@ -7,7 +7,8 @@ describe Game do
       :player_id => 1,
       :opponent_id => 1,
       :winner_id => 1,
-      :rounds => 1
+      :total_rounds => 1,
+      :completed_rounds => 1
     }
   end
 

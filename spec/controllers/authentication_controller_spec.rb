@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe AuthenticationController do
+  before :each do
+    controller.stub!(:authenticated?).and_return(false)    
+  end
+
   #Delete these examples and add some real ones
   it "should use AuthenticationController" do
     controller.should be_an_instance_of(AuthenticationController)

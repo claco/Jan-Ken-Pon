@@ -4,6 +4,7 @@ describe Round do
   before(:each) do
     @valid_attributes = {
       :game_id => 1,
+      :number => 1,
       :player_weapon_id => 1,
       :opponent_weapon_id => 1,
       :winning_weapon_id => 1

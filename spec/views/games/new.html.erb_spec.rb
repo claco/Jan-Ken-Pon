@@ -5,7 +5,7 @@ describe "/games/new.html.erb" do
 
   before(:each) do
     assigns[:game] = stub_model(Game,
-      :new_record? => true
+      :new_record? => true, :attribute => nil
     )
   end
 

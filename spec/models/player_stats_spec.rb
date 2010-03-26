@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PlayerStats do
   before(:each) do
     @valid_attributes = {
-      
+      :player_id => 1
     }
   end
 

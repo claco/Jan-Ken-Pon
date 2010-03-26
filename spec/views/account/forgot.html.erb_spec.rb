@@ -19,14 +19,7 @@ describe "/account/forgot" do
     response.should have_tag "form[action=?]", forgot_path do
       with_tag 'label', :text => 'Email Address'
       with_tag "input[type=text]", :name => 'User[email]'
-      with_tag "input[type=submit][value=Reset]"
+      with_tag "input[type=image][name=send]"
     end
-  end
-
-  it "should display sent email message" do
-    flash[:notice] = 'has been sent'
-    do_render
-    
-    response.should include_text 'has been sent'
   end
 end

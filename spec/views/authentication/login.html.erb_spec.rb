@@ -21,14 +21,7 @@ describe "/authentication/login" do
       with_tag 'label', :text => 'Password'
       with_tag "input[type=text]", :name => 'User[email]'
       with_tag "input[type=password]", :name => 'User[password]'
-      with_tag "input[type=submit][value=Login]"
+      with_tag "input[type=image][name=login]"
     end
-  end
-
-  it "should display error when login sets notice" do
-    flash[:notice] = 'Invalid email address or password'
-    do_render
-    
-    response.should include_text "Invalid email address or password" 
   end
 end

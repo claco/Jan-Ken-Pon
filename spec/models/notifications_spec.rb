@@ -31,7 +31,7 @@ describe Notifications do
     end
   end
   describe "Password Reset Email" do
-    before(:all) do
+    before(:all) do     
       @email = Notifications.create_forgot_password("user@example.com", "User", "token")
     end
 

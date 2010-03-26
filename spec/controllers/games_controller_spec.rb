@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe GamesController do
+  before :each do
+    controller.stub!(:requires_authentication)
+  end
 
   def mock_game(stubs={})
     @mock_game ||= mock_model(Game, stubs)
@@ -16,7 +19,7 @@ describe GamesController do
 
   describe "GET show" do
     it "assigns the requested game as @game" do
-      Game.stub(:find).with("37").and_return(mock_game)
+      Game.stub(:find_by_key).with("37").and_return(mock_game)
       get :show, :id => "37"
       assigns[:game].should equal(mock_game)
     end
@@ -32,7 +35,7 @@ describe GamesController do
 
   describe "GET edit" do
     it "assigns the requested game as @game" do
-      Game.stub(:find).with("37").and_return(mock_game)
+      Game.stub(:find_by_key).with("37").and_return(mock_game)
       get :edit, :id => "37"
       assigns[:game].should equal(mock_game)
     end
@@ -42,27 +45,56 @@ describe GamesController do
 
     describe "with valid params" do
       it "assigns a newly created game as @game" do
+        player = mock_model(Player)
+        user = mock_model(User, :player => player)
+        mode = mock_model(Mode)
+        controller.should_receive(:current_user).and_return(user)
+
         Game.stub(:new).with({'these' => 'params'}).and_return(mock_game(:save => true))
+        mock_game.should_receive(:player=).with(player)
+        mock_game.should_receive(:mode).and_return(mode)
+        mock_game.should_receive(:key).and_return('abc')
+
         post :create, :game => {:these => 'params'}
         assigns[:game].should equal(mock_game)
       end
 
       it "redirects to the created game" do
+        player = mock_model(Player)
+        user = mock_model(User, :player => player)
+        mode = mock_model(Mode)
+        controller.should_receive(:current_user).and_return(user)
         Game.stub(:new).and_return(mock_game(:save => true))
+        mock_game.should_receive(:player=).with(player)
+        mock_game.should_receive(:mode).and_return(mode)
+        mock_game.should_receive(:key).and_return('abc')
+        
         post :create, :game => {}
-        response.should redirect_to(game_url(mock_game))
+        response.should redirect_to(play_game_url('abc'))
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved game as @game" do
+        player = mock_model(Player)
+        user = mock_model(User, :player => player)
+        mode = mock_model(Mode)
+        controller.should_receive(:current_user).and_return(user)
         Game.stub(:new).with({'these' => 'params'}).and_return(mock_game(:save => false))
+        mock_game.should_receive(:player=).with(player)
+
         post :create, :game => {:these => 'params'}
         assigns[:game].should equal(mock_game)
       end
 
       it "re-renders the 'new' template" do
+        player = mock_model(Player)
+        user = mock_model(User, :player => player)
+        mode = mock_model(Mode)
+        controller.should_receive(:current_user).and_return(user)
         Game.stub(:new).and_return(mock_game(:save => false))
+        mock_game.should_receive(:player=).with(player)
+
         post :create, :game => {}
         response.should render_template('new')
       end
@@ -74,7 +106,7 @@ describe GamesController do
 
     describe "with valid params" do
       it "updates the requested game" do
-        Game.should_receive(:find).with("37").and_return(mock_game)
+        Game.should_receive(:find_by_key).with("37").and_return(mock_game)
         mock_game.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => "37", :game => {:these => 'params'}
       end
@@ -94,7 +126,7 @@ describe GamesController do
 
     describe "with invalid params" do
       it "updates the requested game" do
-        Game.should_receive(:find).with("37").and_return(mock_game)
+        Game.should_receive(:find_by_key).with("37").and_return(mock_game)
         mock_game.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => "37", :game => {:these => 'params'}
       end
@@ -116,7 +148,7 @@ describe GamesController do
 
   describe "DELETE destroy" do
     it "destroys the requested game" do
-      Game.should_receive(:find).with("37").and_return(mock_game)
+      Game.should_receive(:find_by_key).with("37").and_return(mock_game)
       mock_game.should_receive(:destroy)
       delete :destroy, :id => "37"
     end

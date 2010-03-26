@@ -1,6 +1,6 @@
 <%= error_messages_for 'user', 'player' %>
 
-<% form_for :user, :player do |f| -%>
+<% form_for :user, :player, :url => register_path do |f| -%>
 	<fieldset>
 	<% fields_for :user do |user| %>
 	<p>

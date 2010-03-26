@@ -4,9 +4,9 @@ describe "/games/index.html.erb" do
   include GamesHelper
 
   before(:each) do
+    mode = mock_model(Mode, :name => 'Rock, Paper, Scissors')
     assigns[:games] = [
-      stub_model(Game),
-      stub_model(Game)
+      mock_model(Game, :key => 'abc', :name => 'Game1', :mode => mode)
     ]
   end
 

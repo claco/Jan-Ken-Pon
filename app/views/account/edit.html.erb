@@ -1,5 +1,5 @@
 <% if authenticated? %>
-	<%if !current_user.confirmed%>
+	<%if !current_user.confirmed?%>
 		<p>
 			<%=link_to 'Resend Email Confirmation', resend_path%>
 		</p>

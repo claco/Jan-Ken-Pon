@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ModeWeapon do
   before(:each) do
     @valid_attributes = {
-      
+      :weapon_id => 1, :mode_id => 1
     }
   end
 

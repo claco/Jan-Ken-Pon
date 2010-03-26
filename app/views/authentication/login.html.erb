@@ -1,4 +1,4 @@
-<% form_for :User do |f| -%>
+<% form_for :User, :url => login_path do |f| -%>
 	<fieldset>
 		<p>
 			<%= f.label :email, "Email Address" %><br />
@@ -9,7 +9,7 @@
 			<%= f.password_field :password %>
 		</p>
 		<p>
-			<%= image_submit_tag("buttons/login.png", :id => "agree", :name => "agree") %>
+			<%= image_submit_tag("buttons/login.png", :id => "login", :name => "login") %>
 		</p>
 	</fieldset>
 <% end -%>

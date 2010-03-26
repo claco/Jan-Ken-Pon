@@ -8,10 +8,4 @@ describe "/account/resend" do
     render 'account/resend'
   end
 
-  it "should display resent message" do
-    flash[:notice] = 'has been resent'
-    do_render
-    
-    response.should include_text 'has been resent'
-  end
 end

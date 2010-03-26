@@ -18,15 +18,15 @@ describe User do
     user = User.new(@valid_attributes)
     user.email = 'craptasic.com'
     user.should_not be_valid
-    user.errors.on(:email).should == "Email address is invalid"
+    user.errors.on(:email).should include "is invalid"
   end
 
   it "should complain about all required fields" do
     user = User.new()
     user.should_not be_valid
-    user.errors.on(:name).should == "Name is required"
-    user.errors.on(:email).should == "Email address is required"
-    user.errors.on(:password).should == "Password is required"
+    user.errors.on(:name).should include "is required"
+    user.errors.on(:email).should include "is required"
+    user.errors.on(:password).should include "is required"
   end
 
   it "should complain when the email address already exists" do
@@ -34,7 +34,7 @@ describe User do
 
     user2 = User.new(@valid_attributes)
     user2.should_not be_valid
-    user2.errors.on(:email).should == "Email address already exists"
+    user2.errors.on(:email).should include "already exists"
   end
 
   it "should be able to mark a user as confirmed" do
